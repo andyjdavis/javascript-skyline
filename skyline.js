@@ -78,7 +78,7 @@ function getRandomInt(minimum, maximum) {
  
     // And make this class extendable
     Class.extend = arguments.callee;
-   
+
     return Class;
   };
 })();
@@ -90,7 +90,8 @@ Building = Class.extend({
         this.color = color;
     },
     update: function(dt) {
-        this.pos[0] -= dt * 200;
+        multiplier = Math.floor((Date.now() - gGameTime)/1000) * 5;
+        this.pos[0] -= dt * multiplier;
         
         //is this building still on screen?
         return (this.pos[0] + this.size[0]) > 0;
@@ -156,6 +157,7 @@ function drawGame() {
 
 var gOldTime = Date.now();
 var gNewTime = null;
+var gGameTime = Date.now();
 
 var gCity = new City();
 
